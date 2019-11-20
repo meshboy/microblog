@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ex.microblog.BuildConfig
+import com.ex.microblog.core.data.author.entities.AuthorDao
+import com.ex.microblog.core.data.author.entities.DatabaseAuthor
 
 /**
  *@author meshileya seun <mesh@kudi.ai/>
@@ -15,11 +17,13 @@ import com.ex.microblog.BuildConfig
  * defines the database to cache data in the app
  */
 @Database(
-    entities = [],
+    entities = [DatabaseAuthor::class],
     version = 1,
     exportSchema = true
 )
 abstract class MicroBlogDatabase : RoomDatabase() {
+
+    abstract val authorDao: AuthorDao
 
     companion object {
 

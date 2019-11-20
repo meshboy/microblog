@@ -1,5 +1,6 @@
 package com.ex.microblog.core.di.modules.network
 
+import com.ex.microblog.core.data.author.repository.AuthorRemoteDataSource
 import com.ex.microblog.core.network.NetworkService
 import com.ex.microblog.core.network.NetworkServiceImpl
 import org.kodein.di.Kodein
@@ -25,4 +26,12 @@ val networkModule = Kodein.Module("Network Module") {
      * Network Service is ready to be injected
      */
     bind<NetworkService>() with singleton { NetworkServiceImpl(instance()).api() }
+
+    /**
+     * Get an instance of remote data source, the binding class is mapped with its implementation
+     * with an instance of the network service
+     *
+     * Remote data source is ready to be injected
+     */
+    bind<AuthorRemoteDataSource>() with singleton { AuthorRemoteDataSource(instance())  }
 }

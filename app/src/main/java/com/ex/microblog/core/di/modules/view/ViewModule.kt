@@ -1,6 +1,10 @@
 package com.ex.microblog.core.di.modules.view
 
+import com.ex.microblog.authors.viewmodel.AuthorListViewModelFactory
 import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 /**
  *@author meshileya seun <mesh@kudi.ai/>
@@ -13,4 +17,11 @@ import org.kodein.di.Kodein
  */
 val viewModule = Kodein.Module("View Module") {
 
+    /**
+     * AuthorListViewModelFactory is dependency ready, the injected repository is provided
+     * via an instance by kodein.
+     * AuthorListViewModelFactory bind to the same name, which is provided anytime its called
+     * by AuthorFragment
+     */
+    bind() from provider { AuthorListViewModelFactory(instance()) }
 }

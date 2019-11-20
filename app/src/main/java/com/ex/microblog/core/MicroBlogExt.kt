@@ -16,6 +16,7 @@ import android.os.Build
  *
  * reference: https://developer.android.com/reference/android/net/ConnectivityManager
  */
+@Suppress("DEPRECATION")
 fun isConnected(context: Context): Boolean {
 
     val connectivityManager =
