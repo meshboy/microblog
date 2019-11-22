@@ -10,5 +10,4 @@ import com.ex.microblog.core.mvvm.BaseView
 /**
  * holds all views related to listing of authors
  */
-interface AuthorListView: BaseView {
-}
+interface AuthorListView: BaseView

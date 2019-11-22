@@ -3,7 +3,7 @@ package com.ex.microblog.author
 import com.ex.microblog.core.data.author.entities.AuthorDao
 import com.ex.microblog.core.data.author.entities.DatabaseAuthor
 import com.ex.microblog.core.data.author.repository.AuthorLocalDataSource
-import junit.framework.Assert.assertTrue
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

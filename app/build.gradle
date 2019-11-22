@@ -17,6 +17,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,7 +27,7 @@ android {
             applicationIdSuffix ".test"
             versionNameSuffix " - test"
             manifestPlaceholders = ["appName": "Test Micro Blog"]
-            buildConfigField("String", "BASE_URL", '"https://sym-json-server.herokuapp.com/"')
+            buildConfigField("String", "BASE_URL", '"https://sym-json-server.herokuapp.com"')
         }
         release {
             manifestPlaceholders = ["appName": "Micro Blog"]
@@ -34,7 +35,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
 //            the base url for production is not expected to be the same though
-            buildConfigField("String", "BASE_URL", '"https://sym-json-server.herokuapp.com/"')
+            buildConfigField("String", "BASE_URL", '"https://sym-json-server.herokuapp.com"')
         }
     }
 
@@ -49,6 +50,13 @@ android {
     kapt {
         arguments {
             arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 }
@@ -119,11 +127,20 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
 
-    // test
+//    circular imageview
+    implementation "de.hdodenhof:circleimageview:$version_circular_image"
+
+    // android test
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    testImplementation 'org.mockito:mockito-core:3.1.0'
     androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+    androidTestImplementation 'org.mockito:mockito-core:3.1.0'
+
+//    test
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'org.robolectric:robolectric:4.3'
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.5'
 }

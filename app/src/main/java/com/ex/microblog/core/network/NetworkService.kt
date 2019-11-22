@@ -16,6 +16,6 @@ import retrofit2.http.QueryMap
  */
 interface NetworkService {
 
-    @GET(value = "/authors")
+    @GET(value = "authors")
     fun fetchAuthors(@QueryMap query: Map<String, Int>): Deferred<List<AuthorDto>>
 }

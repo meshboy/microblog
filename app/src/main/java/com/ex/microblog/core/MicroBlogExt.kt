@@ -4,6 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.View
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.ex.microblog.R
 
 /**
  *@author meshileya seun <mesh@kudi.ai/>
@@ -30,5 +35,41 @@ fun isConnected(context: Context): Boolean {
     } else {
         val networkInfo = connectivityManager.activeNetworkInfo
         networkInfo != null && networkInfo.isConnectedOrConnecting
+    }
+}
+
+
+/**
+ * load image remote resource into an imageView
+ */
+fun ImageView.loadImage(url: String?, drawable: Int = R.drawable.ic_default_image_profile) {
+    url?.let {
+        Glide.with(this.context)
+            .load(it)
+            .apply(
+                RequestOptions()
+                    .placeholder(drawable)
+                    .error(drawable)
+            )
+            .into(this)
+    }
+}
+
+/**
+ * make view visible
+ */
+fun View.show() {
+    visibility = View.VISIBLE
+}
+
+/**
+ * make view visible, if onlyInvisible is true, the view takes up the assigned space and not appear
+ * other wise, it is gone totally
+ */
+fun View.hide(onlyInvisible: Boolean = false) {
+    visibility = if (onlyInvisible) {
+        View.INVISIBLE
+    } else {
+        View.GONE
     }
 }

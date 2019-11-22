@@ -26,6 +26,7 @@ buildscript {
         version_multi_dex = "1.0.3"
         version_data_binding = "3.2.1"
         version_navigation = "1.0.0"
+        version_circular_image = "2.2.0"
     }
 
     repositories {
