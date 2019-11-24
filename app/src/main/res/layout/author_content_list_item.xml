@@ -41,12 +41,12 @@
                 android:id="@+id/authorNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:authorName="@{author}"
-                app:layout_constraintEnd_toEndOf="@+id/authorEmailAddressTextView"
-                app:layout_constraintStart_toStartOf="@+id/authorEmailAddressTextView"
+                app:layout_constraintStart_toEndOf="@+id/authorProfileImageView"
                 app:layout_constraintTop_toTopOf="@+id/authorProfileImageView"
                 tools:text="Carlos Zboncak" />
 
@@ -54,15 +54,11 @@
                 android:id="@+id/authorEmailAddressTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
                 app:authorEmail="@{author}"
                 app:layout_constraintBottom_toBottomOf="@+id/authorProfileImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/authorProfileImageView"
+                app:layout_constraintStart_toStartOf="@+id/authorNameTextView"
                 app:layout_constraintTop_toBottomOf="@+id/authorNameTextView"
-                app:layout_constraintVertical_bias="0.6"
                 tools:text="deondre55@yahoo.com" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
