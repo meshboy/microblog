@@ -7,16 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.ex.microblog.R
 import com.ex.microblog.authors.adapter.AuthorAdapter
 import com.ex.microblog.authors.view.AuthorListView
 import com.ex.microblog.authors.viewmodel.AuthorListViewModelFactory
 import com.ex.microblog.authors.viewmodel.AuthorsListViewModel
+import com.ex.microblog.core.data.author.domain.Author
 import com.ex.microblog.core.hide
 import com.ex.microblog.core.mvvm.BaseFragment
 import com.ex.microblog.core.show
 import com.ex.microblog.databinding.AuthorsListFragmentBinding
 import org.kodein.di.generic.instance
+import timber.log.Timber
 
 /**
  * defines list of authors
@@ -53,6 +57,18 @@ class AuthorsListFragment : BaseFragment<AuthorListView>(), AuthorListView {
     ): View? {
         binding = AuthorsListFragmentBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        /*
+         when the user resumes back to the view,
+         ensure there is an increment in the offset to avoid duplicate items
+         */
+        viewModel.offset.value = viewModel.offset.value?.inc()
+
+        Timber.d("offset ${viewModel.offset.value}")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -128,6 +144,16 @@ class AuthorsListFragment : BaseFragment<AuthorListView>(), AuthorListView {
             else
                 binding.loadMoreProgressBar.hide()
         })
+    }
+
+    override fun navigateToAuthorDetailsPage(author: Author) {
+        if (findNavController().currentDestination?.id == R.id.authorsListFragment) {
+            findNavController().navigate(
+                AuthorsListFragmentDirections.actionAuthorsListFragmentToAuthorDetailsFragment(
+                    author
+                )
+            )
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.ex.microblog.authors.view
 
+import com.ex.microblog.core.data.author.domain.Author
 import com.ex.microblog.core.mvvm.BaseView
 
 /**
@@ -10,4 +11,6 @@ import com.ex.microblog.core.mvvm.BaseView
 /**
  * holds all views related to listing of authors
  */
-interface AuthorListView: BaseView
+interface AuthorListView: BaseView {
+    fun navigateToAuthorDetailsPage(author: Author)
+}

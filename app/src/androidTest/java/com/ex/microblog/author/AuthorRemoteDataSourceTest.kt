@@ -60,7 +60,7 @@ class AuthorRemoteDataSourceTest {
         val query = remoteDataSource.authorQuery(0, 1)
 
 //        return success upon author list request
-        `when`(networkService.fetchAuthors(query)).thenReturn(AUTHORS.toDeferred())
+        `when`(networkService.fetchAuthorsAsync(query)).thenReturn(AUTHORS.toDeferred())
 
         runBlocking {
 
@@ -78,7 +78,7 @@ class AuthorRemoteDataSourceTest {
         val query = remoteDataSource.authorQuery(0, 1)
 
 //        return error upon author list request
-        `when`(networkService.fetchAuthors(query)).thenThrow(HttpException::class.java)
+        `when`(networkService.fetchAuthorsAsync(query)).thenThrow(HttpException::class.java)
 
         runBlocking {
 

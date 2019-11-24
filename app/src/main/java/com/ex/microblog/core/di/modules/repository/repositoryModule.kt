@@ -2,6 +2,8 @@ package com.ex.microblog.core.di.modules.repository
 
 import com.ex.microblog.core.data.author.repository.AuthorRepository
 import com.ex.microblog.core.data.author.repository.AuthorRepositoryImpl
+import com.ex.microblog.core.data.post.repository.PostRepository
+import com.ex.microblog.core.data.post.repository.PostRepositoryImpl
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -24,4 +26,13 @@ val repositoryModule = Kodein.Module("Repository Module") {
      * AuthorRepository is ready to be injected
      */
     bind<AuthorRepository>() with singleton { AuthorRepositoryImpl(instance(), instance()) }
+
+
+    /**
+     * LocalDataSource and RemoteDataSource are provided via Kodein instances which are mapped to
+     * the PostRepository
+     *
+     * PostRepository is ready to be injected
+     */
+    bind<PostRepository>() with singleton { PostRepositoryImpl(instance(), instance()) }
 }

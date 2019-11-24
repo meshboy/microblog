@@ -14,7 +14,7 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 data class AuthorDto(
-    val id: Long?,
+    val id: Int?,
     val name: String?,
     val userName: String?,
     val email: String?,
@@ -52,7 +52,7 @@ fun List<AuthorDto>.asDatabaseModel(): List<DatabaseAuthor> {
 fun List<AuthorDto>.asDomainModel(): List<Author> {
     return map {
         Author(
-            id = "${it.id ?: 0}",
+            id = it.id ?: 0,
             name = it.name ?: "",
             userName = it.userName ?: "",
             email = it.email ?: "",

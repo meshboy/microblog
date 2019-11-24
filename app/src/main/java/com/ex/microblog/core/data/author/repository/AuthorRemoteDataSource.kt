@@ -23,7 +23,7 @@ class AuthorRemoteDataSource(private val networkService: NetworkService) {
     @Throws(AuthorException::class)
     suspend fun fetchAuthors(offset: Int = 0, size: Int = 20): List<AuthorDto> {
 
-        return when(val authors = remoteAuthors(authorQuery(offset, size))) {
+        return when (val authors = remoteAuthors(authorQuery(offset, size))) {
             is ResponseHandler.Success<List<AuthorDto>> -> {
                 authors.response
             }
@@ -39,7 +39,7 @@ class AuthorRemoteDataSource(private val networkService: NetworkService) {
      */
     suspend fun remoteAuthors(query: Map<String, Int>): ResponseHandler<List<AuthorDto>> {
         return try {
-            val result = networkService.fetchAuthors(query).await()
+            val result = networkService.fetchAuthorsAsync(query).await()
             ResponseHandler.Success(result)
         } catch (ex: Exception) {
             ex.printStackTrace()

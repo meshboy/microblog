@@ -17,7 +17,7 @@ import com.ex.microblog.core.data.author.domain.Author
 data class DatabaseAuthor(
 
     @PrimaryKey(autoGenerate = false)
-    val id: Long,
+    val id: Int,
 
     val name: String,
 
@@ -43,7 +43,7 @@ data class DatabaseAuthor(
 fun List<DatabaseAuthor>.asDomainModel(): List<Author> {
     return map {
         Author(
-            id = "${it.id}",
+            id = it.id,
             name = it.name,
             userName = it.userName,
             email = it.email,
