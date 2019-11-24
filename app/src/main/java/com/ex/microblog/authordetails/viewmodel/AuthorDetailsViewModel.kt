@@ -70,7 +70,7 @@ class AuthorDetailsViewModel(private val postRepository: PostRepository) :
                 }
             } catch (ex: PostException) {
                 ex.printStackTrace()
-                view.showError(ex.msg)
+                view.showError("${ex.msg}\nRefresh page by swiping down")
             } finally {
                 isLoadingMore.value = false
                 isLoading.value = false
@@ -92,7 +92,7 @@ class AuthorDetailsViewModel(private val postRepository: PostRepository) :
                 }
             } catch (ex: PostException) {
                 ex.printStackTrace()
-                view.showError(ex.msg)
+                view.showError("${ex.msg}\nRefresh page by swiping down")
             } finally {
                 isLoading.value = false
             }
@@ -111,6 +111,10 @@ class AuthorDetailsViewModel(private val postRepository: PostRepository) :
         return withContext(Dispatchers.IO) {
             postRepository.syncLocalAndRemoteData(authorId, offset, limit)
         }
+    }
+
+    fun navigateToPostDetailsPage(post: Post) {
+        view.navigateToPostDetailsPage(post)
     }
 
     override fun onCleared() {

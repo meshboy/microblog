@@ -1,6 +1,7 @@
 package com.ex.microblog.core.di.modules.network
 
 import com.ex.microblog.core.data.author.repository.AuthorRemoteDataSource
+import com.ex.microblog.core.data.comments.repository.CommentRemoteDataSource
 import com.ex.microblog.core.data.post.repository.PostRemoteDataSource
 import com.ex.microblog.core.network.NetworkService
 import com.ex.microblog.core.network.NetworkServiceImpl
@@ -34,11 +35,17 @@ val networkModule = Kodein.Module("Network Module") {
      *
      * Remote data source is ready to be injected
      */
-    bind<AuthorRemoteDataSource>() with singleton { AuthorRemoteDataSource(instance())  }
+    bind<AuthorRemoteDataSource>() with singleton { AuthorRemoteDataSource(instance()) }
 
     /**
      *
      * Remote data source is ready to be injected
      */
-    bind<PostRemoteDataSource>() with singleton { PostRemoteDataSource(instance())  }
+    bind<PostRemoteDataSource>() with singleton { PostRemoteDataSource(instance()) }
+
+    /**
+     *
+     * Remote data source is ready to be injected
+     */
+    bind<CommentRemoteDataSource>() with singleton { CommentRemoteDataSource(instance()) }
 }

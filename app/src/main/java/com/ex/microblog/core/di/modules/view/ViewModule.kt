@@ -2,6 +2,7 @@ package com.ex.microblog.core.di.modules.view
 
 import com.ex.microblog.authordetails.viewmodel.AuthorDetailsViewModelFactory
 import com.ex.microblog.authors.viewmodel.AuthorListViewModelFactory
+import com.ex.microblog.postdetails.viewmodel.PostDetailsViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -34,4 +35,11 @@ val viewModule = Kodein.Module("View Module") {
      * by AuthorDetailsFragment
      */
     bind() from provider { AuthorDetailsViewModelFactory(instance()) }
+
+
+    /**
+     * PostDetailsViewModelFactory bind to the same name, which is provided anytime its called
+     * by PostDetailsFragment
+     */
+    bind() from provider { PostDetailsViewModelFactory(instance()) }
 }

@@ -21,5 +21,17 @@
         <argument
             android:name="author"
             app:argType="com.ex.microblog.core.data.author.domain.Author" />
+        <action
+            android:id="@+id/action_authorDetailsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.ex.microblog.postdetails.ui.PostDetailsFragment"
+        android:label="@string/post_details"
+        tools:layout="@layout/post_details_fragment">
+        <argument
+            android:name="post"
+            app:argType="com.ex.microblog.core.data.post.domain.Post" />
     </fragment>
 </navigation>

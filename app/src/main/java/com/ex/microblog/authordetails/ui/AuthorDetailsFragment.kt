@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.ex.microblog.R
 import com.ex.microblog.authordetails.adapter.PostAdapter
 import com.ex.microblog.authordetails.view.AuthorDetailsView
 import com.ex.microblog.authordetails.viewmodel.AuthorDetailsViewModel
 import com.ex.microblog.authordetails.viewmodel.AuthorDetailsViewModelFactory
+import com.ex.microblog.core.data.post.domain.Post
 import com.ex.microblog.core.hide
 import com.ex.microblog.core.loadImage
 import com.ex.microblog.core.mvvm.BaseFragment
@@ -116,7 +119,7 @@ class AuthorDetailsFragment : BaseFragment<AuthorDetailsView>(), AuthorDetailsVi
           select an item from the recyclerview list
          */
         adapter.setListener(PostAdapter.OnClickListener { post ->
-
+            viewModel.navigateToPostDetailsPage(post)
         })
 
         viewModel.posts.observe(this, Observer { authors ->
@@ -151,6 +154,16 @@ class AuthorDetailsFragment : BaseFragment<AuthorDetailsView>(), AuthorDetailsVi
 
     override fun hideError() {
         binding.errorMsgTextView.hide()
+    }
+
+    override fun navigateToPostDetailsPage(post: Post) {
+        if (findNavController().currentDestination?.id == R.id.authorDetailsFragment) {
+            findNavController().navigate(
+                AuthorDetailsFragmentDirections.actionAuthorDetailsFragmentToPostDetailsFragment(
+                    post
+                )
+            )
+        }
     }
 
     override fun showError(error: String?) {

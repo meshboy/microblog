@@ -1,5 +1,6 @@
 package com.ex.microblog.authordetails.view
 
+import com.ex.microblog.core.data.post.domain.Post
 import com.ex.microblog.core.mvvm.BaseView
 
 /**
@@ -11,5 +12,10 @@ import com.ex.microblog.core.mvvm.BaseView
  * design to hold author's details view
  */
 interface AuthorDetailsView: BaseView {
+    /*
+    hide the view that display error
+     */
     fun hideError()
+
+    fun navigateToPostDetailsPage(post: Post)
 }

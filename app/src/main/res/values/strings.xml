@@ -8,4 +8,7 @@
     <string name="latitude">Latitude : %s</string>
     <string name="post">There is no post available for this author</string>
     <string name="posts">Posts</string>
+    <string name="post_image">Post Image</string>
+    <string name="comments">Comments</string>
+    <string name="post_details">Details</string>
 </resources>
