@@ -3,6 +3,8 @@ package com.ex.microblog.core.di.modules.database
 import com.ex.microblog.core.data.author.entities.AuthorDao
 import com.ex.microblog.core.data.author.repository.AuthorLocalDataSource
 import com.ex.microblog.core.data.database.MicroBlogDatabase
+import com.ex.microblog.core.data.post.entities.PostDao
+import com.ex.microblog.core.data.post.repository.PostLocalDataSource
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -39,4 +41,15 @@ val databaseModule = Kodein.Module("Database Module") {
      * local data source is ready to be injected
      */
     bind<AuthorLocalDataSource>() with singleton { AuthorLocalDataSource(instance()) }
+
+
+    /**
+     * binds with postDao from the database.
+     */
+    bind<PostDao>() with singleton { MicroBlogDatabase.getDatabase(instance()).postDao }
+
+    /**
+     * local post data source is ready to be injected
+     */
+    bind<PostLocalDataSource>() with singleton { PostLocalDataSource(instance()) }
 }

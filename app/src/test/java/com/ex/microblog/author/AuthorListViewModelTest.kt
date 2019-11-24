@@ -39,7 +39,7 @@ class AuthorListViewModelTest {
 
     private val expectedAuthors = listOf(
         Author(
-            id = "1",
+            id = 1,
             name = "test name",
             userName = "test username",
             email = "test@gmail.com",
@@ -49,7 +49,7 @@ class AuthorListViewModelTest {
         ),
 
         Author(
-            id = "2",
+            id = 2,
             name = "test name 2",
             userName = "test username 2",
             email = "test2@gmail.com",

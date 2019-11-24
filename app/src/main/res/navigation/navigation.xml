@@ -9,5 +9,17 @@
         android:id="@+id/authorsListFragment"
         android:name="com.ex.microblog.authors.ui.AuthorsListFragment"
         android:label="@string/authors"
-        tools:layout="@layout/authors_list_fragment" />
+        tools:layout="@layout/authors_list_fragment">
+        <action
+            android:id="@+id/action_authorsListFragment_to_authorDetailsFragment"
+            app:destination="@id/authorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authorDetailsFragment"
+        android:name="com.ex.microblog.authordetails.ui.AuthorDetailsFragment"
+        tools:layout="@layout/author_details_fragment">
+        <argument
+            android:name="author"
+            app:argType="com.ex.microblog.core.data.author.domain.Author" />
+    </fragment>
 </navigation>

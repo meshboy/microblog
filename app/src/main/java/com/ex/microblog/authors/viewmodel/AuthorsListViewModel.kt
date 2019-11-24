@@ -28,7 +28,7 @@ class AuthorsListViewModel(private val authorRepository: AuthorRepository) :
     val isLoadingMore = MutableLiveData<Boolean>()
 
     init {
-        offset.value = 1
+        offset.value = 0
         authors.value = emptyList()
 
         isLoading.value = false
@@ -42,11 +42,11 @@ class AuthorsListViewModel(private val authorRepository: AuthorRepository) :
      */
     fun fetchAuthors() {
         /*
-         * once the offset is not the default value, the user is assumed to have
-         * scrolled down to the bottom of the list
-         */
-        isLoading.value = offset.value == 1
-        isLoadingMore.value = offset.value != 1
+          *isLoading is expected to be true when the autors is empty which is an attempt to
+          * fetch new authors
+          */
+        isLoading.value = authors.value?.isEmpty()
+        isLoadingMore.value = authors.value?.isNotEmpty()
         coroutineJob.launch {
             try {
                 val fetchedAuthors = fetchAuthorsFromDataSource(offset.value ?: 1)
@@ -75,7 +75,7 @@ class AuthorsListViewModel(private val authorRepository: AuthorRepository) :
      * should be passed to the details page
      */
     fun navigateToAuthorDetailsPage(author: Author) {
-
+        view.navigateToAuthorDetailsPage(author)
     }
 
     override fun onCleared() {

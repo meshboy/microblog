@@ -3,4 +3,9 @@
     <string name="authors">Authors</string>
     <string name="dummy_error_msg">Something went wrong. Please try again</string>
     <string name="try_again">Try Again</string>
+    <string name="location">Current Location</string>
+    <string name="authorImage">Authors Image</string>
+    <string name="latitude">Latitude : %s</string>
+    <string name="post">There is no post available for this author</string>
+    <string name="posts">Posts</string>
 </resources>
