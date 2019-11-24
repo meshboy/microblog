@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -69,7 +68,10 @@ class PostDetailsFragment : BaseFragment<PostDetailsView>(), PostDetailsView {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        binding.postImageView.loadImage(viewModel.post.value?.imageUrl, R.drawable.ic_default_post_image)
+        binding.postImageView.loadImage(
+            viewModel.post.value?.imageUrl,
+            R.drawable.ic_default_post_image
+        )
 
         viewModel.fetchComments()
 
@@ -82,7 +84,7 @@ class PostDetailsFragment : BaseFragment<PostDetailsView>(), PostDetailsView {
 
         viewModel.comments.observe(this, Observer { comments ->
 
-//            ensure the views related to error info are hidden
+            //            ensure the views related to error info are hidden
             hideErrorViews()
 
             commentAdapter.submitList(comments)
@@ -154,8 +156,6 @@ class PostDetailsFragment : BaseFragment<PostDetailsView>(), PostDetailsView {
             binding.tryAgainButton.show()
             binding.errorMsgTextView.show()
             binding.errorMsgTextView.text = error
-        } else {
-            Toast.makeText(activity!!, error, Toast.LENGTH_SHORT).show()
         }
     }
 }

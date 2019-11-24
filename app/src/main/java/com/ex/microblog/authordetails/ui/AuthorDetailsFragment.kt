@@ -133,6 +133,10 @@ class AuthorDetailsFragment : BaseFragment<AuthorDetailsView>(), AuthorDetailsVi
          */
         viewModel.isLoading.observe(this, Observer { isLoading ->
             binding.swipeRefreshLayout.isRefreshing = isLoading
+            if(isLoading)
+                binding.loadingTextView.show()
+            else
+                binding.loadingTextView.hide()
         })
 
         /*
